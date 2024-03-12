@@ -1,19 +1,14 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import HeaderWelcome from '@/components/landing/HeaderWelcome.vue'
+import RoomAction from '@/components/landing/RoomAction.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <HeaderWelcome />
   </header>
-
   <main>
-    <TheWelcome />
+    <RoomAction />
   </main>
 </template>
 
@@ -45,3 +40,4 @@ header {
   }
 }
 </style>
+./components/landing/HeaderWelcome.vue
