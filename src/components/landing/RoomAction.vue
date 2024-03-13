@@ -4,6 +4,7 @@ import ButtonUI from '@/components/ui/ButtonUI.vue'
 import InputUI from '@/components/ui/InputUI.vue'
 import IconBack from '@/components/icons/IconBack.vue'
 import IconSpinner from '@/components/icons/IconSpinner.vue'
+import ModalUI from '../ui/ModalUI.vue'
 
 enum State {
   Idle,
@@ -12,14 +13,18 @@ enum State {
 
 const state = reactive({ status: State.Idle, isLoading: false })
 const roomCode = ref<string>('')
+const modal = ref<boolean>(false)
 
 const handleSubmitEnterRoom = () => {
   console.log('Enter the room')
   console.log(roomCode.value)
+  state.isLoading = true
+  modal.value = true
 }
 const handleCreateNewRoom = () => {
   console.log('Create new room')
   state.isLoading = true
+  modal.value = true
 }
 </script>
 
@@ -27,10 +32,7 @@ const handleCreateNewRoom = () => {
   <div>
     <div v-if="state.status === State.Idle" class="wrapper">
       <ButtonUI type="button" @handleClick="handleCreateNewRoom" :disabled="state.isLoading">
-        <div v-if="state.isLoading">
-          <IconSpinner />
-        </div>
-        <p v-else>Create new room</p>
+        Create new room
       </ButtonUI>
       <ButtonUI
         type="button"
@@ -58,6 +60,9 @@ const handleCreateNewRoom = () => {
         >Enter the room</ButtonUI
       >
     </div>
+    <ModalUI v-model="modal" customStyle="width: 0px; padding: 0px;">
+      <IconSpinner />
+    </ModalUI>
   </div>
 </template>
 
@@ -66,17 +71,5 @@ const handleCreateNewRoom = () => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.v-enter-active {
-  transition: opacity 0.5s ease 0.5;
-}
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
 }
 </style>

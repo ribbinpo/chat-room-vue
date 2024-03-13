@@ -11,8 +11,8 @@
 .spinner {
   display: inline-block;
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
 }
 
 .spinner-item {
