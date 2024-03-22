@@ -5,6 +5,9 @@ import InputUI from '@/components/ui/InputUI.vue'
 import IconBack from '@/components/icons/IconBack.vue'
 import IconSpinner from '@/components/icons/IconSpinner.vue'
 import ModalUI from '../ui/ModalUI.vue'
+import { useCreateRoom } from '@/composables/useCreateRoom'
+
+import { delay } from '@/utils/delay.util'
 
 enum State {
   Idle,
@@ -21,10 +24,14 @@ const handleSubmitEnterRoom = () => {
   state.isLoading = true
   modal.value = true
 }
-const handleCreateNewRoom = () => {
-  console.log('Create new room')
+const handleCreateNewRoom = async () => {
+  const { create } = useCreateRoom()
   state.isLoading = true
   modal.value = true
+  await delay(3000)
+  await create()
+  state.isLoading = false
+  modal.value = false
 }
 </script>
 
